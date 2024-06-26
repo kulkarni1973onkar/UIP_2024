@@ -3,6 +3,7 @@ import Book from "./components/Book";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import About from "./components/About";
+import Nav from "./components/Nav";
 
 
 const books = [
@@ -28,6 +29,7 @@ function App() {
       <Login />
       <About />
       <Register />
+      <Nav />
       <h>BooksBuzz.com</h>
       <Book books={books}/>
     </div>
