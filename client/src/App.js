@@ -1,9 +1,10 @@
 import './App.css';
-import Book from "./components/Book";
-import Login from "./components/Login";
-import Register from "./components/Register";
-import About from "./components/About";
-import Nav from "./components/Nav";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+import Book from "./components/pages/Book";
+import Login from "./components/pages/Login";
+import Register from "./components/pages/Register";
+import About from "./components/pages/About";
+import Nav from "./components/pages/Nav";
 
 
 const books = [
@@ -25,13 +26,20 @@ const books = [
 
 function App() {
   return (
-    <div className="App">
-      <Login />
-      <About />
-      <Register />
-      <Nav />
-      <h>BooksBuzz.com</h>
-      <Book books={books}/>
+    <div className="App">  
+
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Nav />}>
+            <Route index element={<About />}/>
+
+            <Route path="books" element={<Book books={books}/>}/>
+            <Route path="register" element={<Register />}/>
+            <Route path="login" element={<Login />}/>
+            
+            </Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
