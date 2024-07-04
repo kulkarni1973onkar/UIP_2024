@@ -2,6 +2,7 @@ import { fetchData } from "../../main.js";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+
 const Register = () => {
   const navigate = useNavigate();
   const [userData, setUserData] = useState({
@@ -36,8 +37,8 @@ const Register = () => {
     )
     .then((data) => {
       if (!data.message) {
-        console.log(data);
-        navigate("/books");
+        console.log(data)
+        navigate("/books")
       } else {
         console.log(data.message);
       }
