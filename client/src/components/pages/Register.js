@@ -15,39 +15,31 @@ const Register = () => {
   });
 
   const { username, password, password2, firstname, lastname, email } = userData;
-  const onChange = (e) => setUserData({ ...userData, [e.target.name]: e.target.value });
+  
 
+  const onChange = (e) => setUserData({ ...userData, [e.target.name]: e.target.value });
+    
   const onSubmit = (e) => {
     e.preventDefault();
 
     if (password !== password2) {
       console.log("Passwords do not match");
-      return;
-    }
-
-    fetchData("/user/register",
-      {
-        firstname,
-        lastname,
-        email,
-        username,
-        password
-      },
-      "POST"
-    )
+      }
+    else
+    {
+    fetchData("/user/register",userData,"POST")
     .then((data) => {
       if (!data.message) {
-        console.log(data)
-        navigate("/books")
-      } else {
-        console.log(data.message);
-      }
+        localStorage.setItem('user', JSON.stringify(data));
+        navigate('/');
+        window.location.reload();
+        } 
     })
     .catch((error) => {
-      console.log(`Error! ${error.message}`);
+      console.log(error)
     });
-  };
-
+  }
+  }
   return (
     <div>
       <form onSubmit={onSubmit}>
